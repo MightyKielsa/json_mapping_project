@@ -1,5 +1,3 @@
-import datetime
-
 sample_schema = {
     "invoice_argument1": {
         "path": "namespace:Invoice/@Argument1",
@@ -77,52 +75,4 @@ sample_dict = {
             }
         },
     }
-}
-
-
-def datetime_formatting(input_date, input_format="%d-%m-%y", output_format="%d/%m/%Y"):
-    new_date = datetime.datetime.strptime(input_date, input_format).strftime(
-        output_format
-    )
-    return new_date
-
-
-def current_datetime(datetime_format="%Y-%m-%d %H:%M:%S"):
-    now_datetime = datetime.datetime.now()
-    return now_datetime.strftime(datetime_format)
-
-
-def is_equal(value1, value2):
-    return value1 == value2
-
-
-def is_larger(value1, value2):
-    return int(value1) > int(value2)
-
-
-def is_larger_or_equal(value1, value2):
-    return int(value1) >= int(value2)
-
-
-def is_smaller_or_equal(value1, value2):
-    return int(value1) <= int(value2)
-
-
-def is_smaller(value1, value2):
-    return int(value1) < int(value2)
-
-
-def text_formatting():
-    pass
-
-
-actions = {
-    "datetime_formatting": datetime_formatting,
-    "current_datetime": current_datetime,
-    "text_formatting": text_formatting,
-    "==": is_equal,
-    ">": is_larger,
-    "<": is_smaller,
-    ">=": is_larger_or_equal,
-    "<=": is_smaller_or_equal,
 }
