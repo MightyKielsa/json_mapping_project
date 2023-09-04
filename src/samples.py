@@ -37,9 +37,9 @@ sample_schema = {
     },
     "conditional_value/inside_a_value": {
         "action": "condition",
-        "condition": "3 < 5",
-        "true": "namespace:Invoice/namespace:Node1/@Title",
-        "false": "namespace:Invoice/namespace:Node1/@Code",
+        "condition": "#namespace:Invoice/namespace:Node1/@Code < 5",
+        "true": "#namespace:Invoice/namespace:Node1/@Title",
+        "false": "#namespace:Invoice/namespace:Node1/@Code",
     },
 }
 
@@ -48,7 +48,7 @@ sample_dict = {
         "@xmlns:namespace": "http://www.example.com/xml/xml-ns/ExampleXML",
         "@Argument1": "2023-12-31",
         "namespace:Node1": {
-            "@Code": "ExampleCode",
+            "@Code": 7,
             "@Title": "ExampleTitle",
         },
         "namespace:Node2": {
@@ -91,19 +91,19 @@ def is_equal(value1, value2):
 
 
 def is_larger(value1, value2):
-    return value1 > value2
+    return int(value1) > int(value2)
 
 
 def is_larger_or_equal(value1, value2):
-    return value1 >= value2
+    return int(value1) >= int(value2)
 
 
 def is_smaller_or_equal(value1, value2):
-    return value1 <= value2
+    return int(value1) <= int(value2)
 
 
 def is_smaller(value1, value2):
-    return value1 < value2
+    return int(value1) < int(value2)
 
 
 def text_formatting():

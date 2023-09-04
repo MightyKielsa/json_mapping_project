@@ -9,19 +9,32 @@ def mapping_fn(input_data, mapping_schema):
     for output_path, input_field in mapping_schema.items():
         input_action = input_field.pop("action")
         output_path_data = output_path.split("/")
+        # passes the data exactly as it is without transformation
         if input_action == "as_is":
             input_path_data = tuple(input_field["path"].split("/"))
             required_value = get_nested_value(input_data, input_path_data)
         elif input_action == "condition":
             condition_data = input_field[input_action].split(" ")
+            # These two if statements check if either side of the equation is a reference to another value in the json and replaces the path with that data
+            if condition_data[0][0] == "#":
+                condition_data[0] = get_nested_value(input_data, condition_data[0].strip("#").split("/"))
+            if condition_data[2][0] == "#":
+                condition_data[2] = get_nested_value(input_data, condition_data[2].strip("#").split("/"))
             is_condition_true = samples.actions[condition_data[1]](
                 condition_data[0], condition_data[2]
             )
             if is_condition_true:
-                # check if has #
-                required_value = input_field["true"]
+                # check if the true value is a path to another value in the json
+                if input_field["true"][0] == "#":
+                    required_value = get_nested_value(input_data, input_field["true"].strip("#").split("/"))
+                else:
+                    required_value = input_field["true"]
             else:
-                required_value = input_field["false"]
+                # check if the false value is a path to another value in the json
+                if input_field["false"][0] == "#":
+                    required_value = get_nested_value(input_data, input_field["false"].strip("#").split("/"))
+                else:
+                    required_value = input_field["false"]
 
         else:
             for key, value in input_field.items():
@@ -59,7 +72,7 @@ def build_output_branch(
             )
         }
 
-
+# Creates one branch of an output json
 def implement_output_branch(output_data, new_branch):
     new_output_data = output_data
 
