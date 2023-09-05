@@ -1,6 +1,4 @@
-import samples
-
-#
+import actions
 
 
 def mapping_fn(input_data, mapping_schema):
@@ -23,7 +21,7 @@ def mapping_fn(input_data, mapping_schema):
 
                     input_field[key] = get_nested_value(input_data, input_path_data)
 
-            required_value = samples.actions[input_action](**input_field)
+            required_value = actions.actions[input_action](**input_field)
 
         output_branch = build_output_branch(required_value, output_path_data)
         output_data = implement_output_branch(output_data, output_branch)
@@ -75,12 +73,12 @@ def implement_output_branch(output_data, new_branch):
 
 def process_condition(input_field, input_action, input_data):
     condition_data = input_field[input_action].split(" ")
-        # These two if statements check if either side of the equation is a reference to another value in the json and replaces the path with that data
+    # These two if statements check if either side of the equation is a reference to another value in the json and replaces the path with that data
     if condition_data[0][0] == "#":
         condition_data[0] = get_nested_value(input_data, condition_data[0].strip("#").split("/"))
     if condition_data[2][0] == "#":
         condition_data[2] = get_nested_value(input_data, condition_data[2].strip("#").split("/"))
-    is_condition_true = samples.actions[condition_data[1]](
+    is_condition_true = actions.actions[condition_data[1]](
         condition_data[0], condition_data[2]
     )
     if is_condition_true:
@@ -97,4 +95,4 @@ def process_condition(input_field, input_action, input_data):
             required_value = input_field["false"]
     return required_value
 
-mapping_fn(samples.sample_dict, samples.sample_schema)
+mapping_fn(actions.sample_dict, actions.sample_schema)

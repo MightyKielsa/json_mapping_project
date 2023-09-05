@@ -112,8 +112,15 @@ def is_smaller(value1, value2):
     return int(value1) < int(value2)
 
 
-def text_formatting():
-    pass
+def text_formatting(action, text, encoding="UTF-8", errors="strict"):
+    if action == "lowercase":
+        return text.lower()
+    if action == "uppercase":
+        return text.upper()
+    if action == "capitalize":
+        return text.capitalize()
+    if action == "encode":
+        return text.encode(encoding, errors)
 
 
 actions = {
