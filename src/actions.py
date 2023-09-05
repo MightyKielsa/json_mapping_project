@@ -47,6 +47,12 @@ sample_schema = {
         "true": "#namespace:Invoice/namespace:Node1/@Title",
         "false": "#namespace:Invoice/namespace:Node1/@Code",
     },
+    "conditional_value/inside_a_value/some_other_thing": {
+        "action": "text_formatting",
+        "format_type": "encode",
+        "parameters": "encoding=ascii errors=strict",
+        "path": "namespace:Invoice/namespace:Node1/@Title",
+    },
 }
 
 sample_dict = {
@@ -113,9 +119,12 @@ def is_smaller(value1, value2):
 
 
 def text_formatting(action, text, encoding="UTF-8", errors="strict"):
+    print(action)
+    print(text)
     if action == "lowercase":
         return text.lower()
     if action == "uppercase":
+        print(text.upper())
         return text.upper()
     if action == "capitalize":
         return text.capitalize()

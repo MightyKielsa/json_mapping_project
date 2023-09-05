@@ -13,7 +13,9 @@ def mapping_fn(input_data, mapping_schema):
             required_value = get_nested_value(input_data, input_path_data)
         elif input_action == "condition":
             required_value = process_condition(input_field, input_action, input_data)
-
+        elif input_action == "text_formatting":
+            required_value = process_text_formatting(input_field,input_action,input_data)
+            print(required_value)
         else:
             for key, value in input_field.items():
                 if "#" in value:
@@ -94,5 +96,12 @@ def process_condition(input_field, input_action, input_data):
         else:
             required_value = input_field["false"]
     return required_value
+
+def process_text_formatting(input_field, input_action,input_data):
+    value_to_format = get_nested_value(input_data, input_field["path"].split("/"))
+    # parameters = input_field["parameters"].split(" ")
+    parameters = dict(parameter.split("=") for parameter in input_field["parameters"].split(" "))    
+    arguments = {"action":input_field["format_type"], "text": value_to_format, **parameters}
+    return actions.actions[input_action](**arguments)
 
 mapping_fn(actions.sample_dict, actions.sample_schema)
