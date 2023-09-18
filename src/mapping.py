@@ -88,6 +88,8 @@ def process_condition(input_field, input_action, input_data):
         # check if the true value is a path to another value in the json
         if input_field["true"][0] == "#":
             required_value = get_nested_value(input_data, input_field["true"].strip("#").split("/"))
+        elif isinstance(input_field["true"], dict):
+            required_value = perform_nested_action(input_data, input_field)
         else:
             required_value = input_field["true"]
     else:
@@ -105,4 +107,25 @@ def process_text_formatting(input_field, input_action,input_data):
     arguments = {"action":input_field["format_type"], "text": value_to_format, **parameters}
     return actions.actions[input_action](**arguments)
 
+def perform_nested_action(input_data, action_field):
+    input_action = action_field.pop("action")
+    # passes the data exactly as it is without transformation
+    if input_action == "as_is":
+        input_path_data = tuple(action_field["path"].split("/"))
+        required_value = get_nested_value(input_data, input_path_data)
+    # passes data based on condition, allows for reference values
+    elif input_action == "condition":
+        required_value = process_condition(action_field, input_action, input_data)
+    elif input_action == "text_formatting":
+        required_value = process_text_formatting(action_field,input_action,input_data)
+        print(required_value)
+
+    else:
+        for key, value in action_field.items():
+            if "#" in value:
+                input_path_data = value.strip("#").split("/")
+                action_field[key] = get_nested_value(input_data, input_path_data)
+        required_value = actions.actions[input_action](**action_field)
+
+    return required_value
 mapping_fn(actions.sample_dict, actions.sample_schema)
