@@ -53,6 +53,14 @@ sample_schema = {
         "parameters": "encoding=ascii errors=strict",
         "path": "namespace:Invoice/namespace:Node1/@Title",
     },
+    "conditional_value/inside_a_value/inside_y": {
+        "action": "condition",
+        "condition": "#namespace:Invoice/namespace:Node1/@Code > 5",
+        "true": {
+            
+        },
+        "false": "#namespace:Invoice/namespace:Node1/@Code",
+    },
 }
 
 sample_dict = {

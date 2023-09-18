@@ -7,10 +7,12 @@ def mapping_fn(input_data, mapping_schema):
     for output_path, input_field in mapping_schema.items():
         input_action = input_field.pop("action")
         output_path_data = output_path.split("/")
+
         # passes the data exactly as it is without transformation
         if input_action == "as_is":
             input_path_data = tuple(input_field["path"].split("/"))
             required_value = get_nested_value(input_data, input_path_data)
+        # passes data based on condition, allows for reference values
         elif input_action == "condition":
             required_value = process_condition(input_field, input_action, input_data)
         elif input_action == "text_formatting":
@@ -37,7 +39,6 @@ def get_nested_value(input_data, path_data):
         return get_nested_value(input_data[path_data[0]], path_data[1:])
     else:
         return input_data
-
 
 # Creates a dictionary that represents one path of the output_data dictionary
 def build_output_branch(
