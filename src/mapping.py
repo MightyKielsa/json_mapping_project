@@ -17,7 +17,8 @@ def mapping_fn(input_data, mapping_schema):
             required_value = process_condition(input_field, input_action, input_data)
         elif input_action == "text_formatting":
             required_value = process_text_formatting(input_field,input_action,input_data)
-            print(required_value)
+        elif input_action == "calc":
+            required_value = process_calculation(input_data, input_field["expression"])
         else:
             for key, value in input_field.items():
                 if "#" in value:
@@ -86,15 +87,17 @@ def process_condition(input_field, input_action, input_data):
     )
     if is_condition_true:
         # check if the true value is a path to another value in the json
-        if input_field["true"][0] == "#":
+        if isinstance(input_field["true"], dict):
+            required_value = perform_nested_action(input_data, input_field["true"])
+        elif input_field["true"][0] == "#":
             required_value = get_nested_value(input_data, input_field["true"].strip("#").split("/"))
-        elif isinstance(input_field["true"], dict):
-            required_value = perform_nested_action(input_data, input_field)
         else:
             required_value = input_field["true"]
     else:
         # check if the false value is a path to another value in the json
-        if input_field["false"][0] == "#":
+        if isinstance(input_field["false"], dict):
+            required_value = perform_nested_action(input_data, input_field["true"])
+        elif input_field["false"][0] == "#":
             required_value = get_nested_value(input_data, input_field["false"].strip("#").split("/"))
         else:
             required_value = input_field["false"]
@@ -107,7 +110,17 @@ def process_text_formatting(input_field, input_action,input_data):
     arguments = {"action":input_field["format_type"], "text": value_to_format, **parameters}
     return actions.actions[input_action](**arguments)
 
+def process_calculation(input_data, calculation_field):
+    print(calculation_field)
+    calculation_elements = calculation_field.split(" ")
+    for index, element in enumerate(calculation_elements):
+        if element = "(":
+            print("asda")
+
+
+
 def perform_nested_action(input_data, action_field):
+    
     input_action = action_field.pop("action")
     # passes the data exactly as it is without transformation
     if input_action == "as_is":
@@ -118,7 +131,8 @@ def perform_nested_action(input_data, action_field):
         required_value = process_condition(action_field, input_action, input_data)
     elif input_action == "text_formatting":
         required_value = process_text_formatting(action_field,input_action,input_data)
-        print(required_value)
+    elif input_action == "calc":
+        required_value = process_calculation(input_data, action_field["expression"])
 
     else:
         for key, value in action_field.items():
