@@ -114,7 +114,7 @@ def process_calculation(input_data, calculation_field):
     print(calculation_field)
     calculation_elements = calculation_field.split(" ")
     for index, element in enumerate(calculation_elements):
-        if element = "(":
+        if element == "(":
             print("asda")
 
 
