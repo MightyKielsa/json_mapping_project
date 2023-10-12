@@ -111,12 +111,20 @@ def process_text_formatting(input_field, input_action,input_data):
     return actions.actions[input_action](**arguments)
 
 def process_calculation(input_data, calculation_field):
+    print("FIELD:")
     print(calculation_field)
-    calculation_elements = calculation_field.split(" ")
-    for index, element in enumerate(calculation_elements):
+    op_bracket_indexes = []
+    cl_bracket_indexes = [] 
+    for index, element in enumerate(calculation_field):
         if element == "(":
-            print("asda")
+            op_bracket_indexes.append(index)
+        elif element == ")":
+            cl_bracket_indexes.append(index)
 
+    
+    print("RESULTS:")
+    print(op_bracket_indexes)
+    print(cl_bracket_indexes)
 
 
 def perform_nested_action(input_data, action_field):
