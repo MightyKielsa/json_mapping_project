@@ -66,7 +66,7 @@ sample_schema = {
         "false": "#namespace:Invoice/namespace:Node1/@Code",
     },
     "calc_result": {
-        "expression":" 2 * ( 2 * ( 1 + 3 ) )",
+        "expression":" 2 * ( ( 1 + 1 ) * ( 1 + 3 ) )",
         "action": "calc",
     },
 }

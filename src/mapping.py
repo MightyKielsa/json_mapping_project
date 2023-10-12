@@ -121,11 +121,12 @@ def process_calculation(input_data, calculation_field):
         elif element == ")":
             cl_bracket_indexes.append(index)
 
-    
     print("RESULTS:")
     print(op_bracket_indexes)
     print(cl_bracket_indexes)
 
+def calculate_sub_expression(sub_expression):
+    pass
 
 def perform_nested_action(input_data, action_field):
     
