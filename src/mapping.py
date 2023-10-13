@@ -7,15 +7,18 @@ def mapping_fn(input_data, mapping_schema):
     for output_path, input_field in mapping_schema.items():
         input_action = input_field.pop("action")
         output_path_data = output_path.split("/")
+
         # passes the data exactly as it is without transformation
         if input_action == "as_is":
             input_path_data = tuple(input_field["path"].split("/"))
             required_value = get_nested_value(input_data, input_path_data)
+        # passes data based on condition, allows for reference values
         elif input_action == "condition":
             required_value = process_condition(input_field, input_action, input_data)
         elif input_action == "text_formatting":
             required_value = process_text_formatting(input_field,input_action,input_data)
-            print(required_value)
+        elif input_action == "calc":
+            required_value = process_calculation(input_data, input_field["expression"])
         else:
             for key, value in input_field.items():
                 if "#" in value:
@@ -37,7 +40,6 @@ def get_nested_value(input_data, path_data):
         return get_nested_value(input_data[path_data[0]], path_data[1:])
     else:
         return input_data
-
 
 # Creates a dictionary that represents one path of the output_data dictionary
 def build_output_branch(
@@ -85,13 +87,17 @@ def process_condition(input_field, input_action, input_data):
     )
     if is_condition_true:
         # check if the true value is a path to another value in the json
-        if input_field["true"][0] == "#":
+        if isinstance(input_field["true"], dict):
+            required_value = perform_nested_action(input_data, input_field["true"])
+        elif input_field["true"][0] == "#":
             required_value = get_nested_value(input_data, input_field["true"].strip("#").split("/"))
         else:
             required_value = input_field["true"]
     else:
         # check if the false value is a path to another value in the json
-        if input_field["false"][0] == "#":
+        if isinstance(input_field["false"], dict):
+            required_value = perform_nested_action(input_data, input_field["true"])
+        elif input_field["false"][0] == "#":
             required_value = get_nested_value(input_data, input_field["false"].strip("#").split("/"))
         else:
             required_value = input_field["false"]
@@ -104,4 +110,45 @@ def process_text_formatting(input_field, input_action,input_data):
     arguments = {"action":input_field["format_type"], "text": value_to_format, **parameters}
     return actions.actions[input_action](**arguments)
 
+def process_calculation(input_data, calculation_field):
+    print("FIELD:")
+    print(calculation_field)
+    op_bracket_indexes = []
+    cl_bracket_indexes = [] 
+    for index, element in enumerate(calculation_field):
+        if element == "(":
+            op_bracket_indexes.append(index)
+        elif element == ")":
+            cl_bracket_indexes.append(index)
+
+    print("RESULTS:")
+    print(op_bracket_indexes)
+    print(cl_bracket_indexes)
+
+def calculate_sub_expression(sub_expression):
+    pass
+
+def perform_nested_action(input_data, action_field):
+    
+    input_action = action_field.pop("action")
+    # passes the data exactly as it is without transformation
+    if input_action == "as_is":
+        input_path_data = tuple(action_field["path"].split("/"))
+        required_value = get_nested_value(input_data, input_path_data)
+    # passes data based on condition, allows for reference values
+    elif input_action == "condition":
+        required_value = process_condition(action_field, input_action, input_data)
+    elif input_action == "text_formatting":
+        required_value = process_text_formatting(action_field,input_action,input_data)
+    elif input_action == "calc":
+        required_value = process_calculation(input_data, action_field["expression"])
+
+    else:
+        for key, value in action_field.items():
+            if "#" in value:
+                input_path_data = value.strip("#").split("/")
+                action_field[key] = get_nested_value(input_data, input_path_data)
+        required_value = actions.actions[input_action](**action_field)
+
+    return required_value
 mapping_fn(actions.sample_dict, actions.sample_schema)

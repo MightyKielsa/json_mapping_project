@@ -7,7 +7,8 @@ sample_schema = {
     },
     "invoice_code": {
         "path": "namespace:Invoice/namespace:Node1/@Code",
-        "action": "as_is",
+        "action": "calc",
+        "expression": "#namespace:Invoice/namespace:Node1/@Code + 15"
     },
     "inv_complex_val": {
         "action": "datetime_formatting",
@@ -52,6 +53,21 @@ sample_schema = {
         "format_type": "encode",
         "parameters": "encoding=ascii errors=strict",
         "path": "namespace:Invoice/namespace:Node1/@Title",
+    },
+    "conditional_value/inside_a_value/inside_y": {
+        "action": "condition",
+        "condition": "#namespace:Invoice/namespace:Node1/@Code > 5",
+        "true": {
+            "action": "text_formatting",
+            "format_type": "encode",
+            "parameters": "encoding=ascii errors=strict",
+            "path": "namespace:Invoice/namespace:Node1/@Title",
+    },
+        "false": "#namespace:Invoice/namespace:Node1/@Code",
+    },
+    "calc_result": {
+        "expression":" 2 * ( ( 1 + 1 ) * ( 1 + 3 ) )",
+        "action": "calc",
     },
 }
 
@@ -119,8 +135,6 @@ def is_smaller(value1, value2):
 
 
 def text_formatting(action, text, encoding="UTF-8", errors="strict"):
-    print(action)
-    print(text)
     if action == "lowercase":
         return text.lower()
     if action == "uppercase":
