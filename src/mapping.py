@@ -115,11 +115,14 @@ def process_calculation(input_data, calculation_field):
     print(calculation_field)
     op_bracket_indexes = []
     cl_bracket_indexes = [] 
+    
     for index, element in enumerate(calculation_field):
         if element == "(":
             op_bracket_indexes.append(index)
         elif element == ")":
             cl_bracket_indexes.append(index)
+
+    for index, element in enumerate(cl_bracket_indexes):
 
     print("RESULTS:")
     print(op_bracket_indexes)
