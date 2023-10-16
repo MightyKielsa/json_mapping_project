@@ -54,7 +54,7 @@ sample_schema = {
         "parameters": "encoding=ascii errors=strict",
         "path": "namespace:Invoice/namespace:Node1/@Title",
     },
-    "conditional_value/inside_a_value/inside_y": {
+    "conditional_value/inside_a_value/inside_z": {
         "action": "condition",
         "condition": "#namespace:Invoice/namespace:Node1/@Code > 5",
         "true": {
