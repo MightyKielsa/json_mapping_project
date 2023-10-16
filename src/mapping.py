@@ -113,20 +113,22 @@ def process_text_formatting(input_field, input_action,input_data):
 def process_calculation(input_data, calculation_field):
     print("FIELD:")
     print(calculation_field)
-    op_bracket_indexes = []
-    cl_bracket_indexes = [] 
+    calculation_result = eval(calculation_field)
+
+    print(calculation_result)
+    # op_bracket_indexes = []
+    # cl_bracket_indexes = [] 
+    # priority_calc_data = []
     
-    for index, element in enumerate(calculation_field):
-        if element == "(":
-            op_bracket_indexes.append(index)
-        elif element == ")":
-            cl_bracket_indexes.append(index)
+    # for index, element in enumerate(calculation_field):
+    #     if element == "(":
+    #         op_bracket_indexes.append(index)
+    #     elif element == ")":
+    #         cl_bracket_indexes.append(index)
 
-    for index, element in enumerate(cl_bracket_indexes):
-
-    print("RESULTS:")
-    print(op_bracket_indexes)
-    print(cl_bracket_indexes)
+    # print("RESULTS:")
+    # print(op_bracket_indexes)
+    # print(cl_bracket_indexes)
 
 def calculate_sub_expression(sub_expression):
     pass

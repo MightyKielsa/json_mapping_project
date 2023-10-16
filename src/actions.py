@@ -5,11 +5,11 @@ sample_schema = {
         "path": "namespace:Invoice/@Argument1",
         "action": "as_is",
     },
-    "invoice_code": {
-        "path": "namespace:Invoice/namespace:Node1/@Code",
-        "action": "calc",
-        "expression": "#namespace:Invoice/namespace:Node1/@Code + 15"
-    },
+    # "invoice_code": {
+    #     "path": "namespace:Invoice/namespace:Node1/@Code",
+    #     "action": "calc",
+    #     "expression": "#namespace:Invoice/namespace:Node1/@Code + 15"
+    # },
     "inv_complex_val": {
         "action": "datetime_formatting",
         "input_date": "#namespace:Invoice/@Argument1",
