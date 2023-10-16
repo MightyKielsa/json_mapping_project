@@ -111,33 +111,17 @@ def process_text_formatting(input_field, input_action,input_data):
     return actions.actions[input_action](**arguments)
 
 def process_calculation(input_data, calculation_field):
-    print("FIELD:")
-    print(calculation_field)
 
     if "#" in calculation_field:
         separated_calculation = calculation_field.split()
         for index,element in enumerate(separated_calculation):
             if "#" in element:
                 separated_calculation[index] = str(get_nested_value(input_data, element.strip("#").split("/")))
-        # print(separated_calculation)
+
         calculation_result = eval("".join(separated_calculation))
-        print(calculation_result)
-    # op_bracket_indexes = []
-    # cl_bracket_indexes = [] 
-    # priority_calc_data = []
-    
-    # for index, element in enumerate(calculation_field):
-    #     if element == "(":
-    #         op_bracket_indexes.append(index)
-    #     elif element == ")":
-    #         cl_bracket_indexes.append(index)
-
-    # print("RESULTS:")
-    # print(op_bracket_indexes)
-    # print(cl_bracket_indexes)
-
-def calculate_sub_expression(sub_expression):
-    pass
+        return calculation_result
+    else:
+        return eval(calculation_field)
 
 def perform_nested_action(input_data, action_field):
     
