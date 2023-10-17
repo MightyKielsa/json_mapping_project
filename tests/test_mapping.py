@@ -20,3 +20,55 @@ def test_get_nested_value_failure():
         "The path data passed in is not of the correct type. Type of the path: <class 'str'>. Path: wrong"
         in str(excinfo.value)
     )
+
+
+def test_build_output_branch_success():
+    pass
+
+
+def test_build_output_branch_failure():
+    pass
+
+
+def test_implement_output_branch_success():
+    pass
+
+
+def test_implement_output_branch_failure():
+    pass
+
+
+def test_process_condition_success():
+    pass
+
+
+def test_process_condition_failure():
+    pass
+
+
+def test_process_text_formatting_success():
+    pass
+
+
+def test_process_text_formatting_failure():
+    pass
+
+
+def test_process_calculation_success():
+    pass
+
+
+def test_perform_nested_action_success():
+    pass
+
+
+def test_perform_nested_action_failure():
+    pass
+
+
+def test_perform_nested_action_success():
+    pass
+
+
+def test_perform_nested_action_failure():
+    pass
