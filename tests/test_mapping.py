@@ -16,4 +16,7 @@ def test_get_nested_value_failure():
     erronous_path_data = "wrong"
     with pytest.raises(Exception) as excinfo:
         mapping.get_nested_value(mock_input_data, erronous_path_data)
-    # assert str(excinfo.value) == "Division by zero is not allowed"
+    assert (
+        "The path data passed in is not of the correct type. Type of the path: <class 'str'>. Path: wrong"
+        in str(excinfo.value)
+    )
