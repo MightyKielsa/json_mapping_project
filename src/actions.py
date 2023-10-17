@@ -8,7 +8,7 @@ sample_schema = {
     "invoice_code": {
         "path": "namespace:Invoice/namespace:Node1/@Code",
         "action": "calc",
-        "expression": "#namespace:Invoice/namespace:Node1/@Code + 15"
+        "expression": "#namespace:Invoice/namespace:Node1/@Code + 15",
     },
     "inv_complex_val": {
         "action": "datetime_formatting",
@@ -62,11 +62,11 @@ sample_schema = {
             "format_type": "encode",
             "parameters": "encoding=ascii errors=strict",
             "path": "namespace:Invoice/namespace:Node1/@Title",
-    },
+        },
         "false": "#namespace:Invoice/namespace:Node1/@Code",
     },
     "calc_result": {
-        "expression":" 2 * ( ( 1 + 1 ) * ( 1 + 3 ) )",
+        "expression": " 2 * ( ( 1 + 1 ) * ( 1 + 3 ) )",
         "action": "calc",
     },
 }

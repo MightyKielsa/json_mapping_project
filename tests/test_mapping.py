@@ -1,2 +1,19 @@
+import pytest
+import src.mapping as mapping
+import tests.test_data.samples as samples
+
+
 def test_get_nested_value_success():
-  assert true
+    mock_input_data = samples.sample_dict
+    mock_path_data = ["namespace:Invoice", "namespace:Node1", "@Code"]
+    expected_result = 7
+    actual_result = mapping.get_nested_value(mock_input_data, mock_path_data)
+    assert expected_result == actual_result
+
+
+def test_get_nested_value_failure():
+    mock_input_data = samples.sample_dict
+    erronous_path_data = "wrong"
+    with pytest.raises(Exception) as excinfo:
+        mapping.get_nested_value(mock_input_data, erronous_path_data)
+    # assert str(excinfo.value) == "Division by zero is not allowed"
