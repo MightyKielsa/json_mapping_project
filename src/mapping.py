@@ -52,7 +52,7 @@ def mapping_fn(input_data, mapping_schema):
 # input data = dictionary from xml, path data (tuple, with, values)
 def get_nested_value(input_data, path_data):
     try:
-        if type(path_data) is not list:
+        if (type(path_data) is not list) and (type(path_data) is not tuple):
             path_type = type(path_data)
             raise Exception(
                 f"The path data passed in is not of the correct type. Type of the path: {path_type}. Path: {path_data}"
