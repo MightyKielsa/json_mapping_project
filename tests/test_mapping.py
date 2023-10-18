@@ -26,17 +26,23 @@ def test_build_output_branch_success():
     mock_required_value = 12
     output_path_data = ["something", "here"]
     expected_result = {"something": {"here": 12}}
-    actual_result = mapping.build_output_branch(mock_required_value, output_path_data)
+    actual_result = mapping.build_output_branch(
+        mock_required_value, output_path_data
+    )
     assert type(actual_result) is dict
     assert expected_result == actual_result
 
 
 def test_build_output_branch_failure():
-    pass
+    mock_required_value = 12
+    erronous_output_path_data = 500
+    with pytest.raises(Exception):
+        mapping.build_output_branch(
+            mock_required_value, erronous_output_path_data
+        )
 
 
 def test_implement_output_branch_success():
-    pass
 
 
 def test_implement_output_branch_failure():
