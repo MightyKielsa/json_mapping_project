@@ -26,17 +26,55 @@ def test_build_output_branch_success():
     mock_required_value = 12
     output_path_data = ["something", "here"]
     expected_result = {"something": {"here": 12}}
-    actual_result = mapping.build_output_branch(mock_required_value, output_path_data)
+    actual_result = mapping.build_output_branch(
+        mock_required_value, output_path_data
+    )
     assert type(actual_result) is dict
     assert expected_result == actual_result
 
 
 def test_build_output_branch_failure():
-    pass
+    mock_required_value = 12
+    erronous_output_path_data = 500
+    with pytest.raises(Exception):
+        mapping.build_output_branch(
+            mock_required_value, erronous_output_path_data
+        )
 
 
 def test_implement_output_branch_success():
-    pass
+    mock_output_data_1 = {"mock_value_1": 1, "mock_value_2": "example"}
+    mock_new_branch_1 = {"branch_node": {"final_value": 12}}
+    mock_output_data_2 = {
+        "mock_value_1": 1,
+        "branch_node": {"existing_value": "example_str"},
+    }
+    mock_new_branch_2 = {"branch_node": {"final_value": "string_value"}}
+
+    expected_result_1 = {
+        "mock_value_1": 1,
+        "mock_value_2": "example",
+        "branch_node": {"final_value": 12},
+    }
+    expected_result_2 = {
+        "mock_value_1": 1,
+        "branch_node": {
+            "existing_value": "example_str",
+            "final_value": "string_value",
+        },
+    }
+
+    actual_result_1 = mapping.implement_output_branch(
+        mock_output_data_1, mock_new_branch_1
+    )
+    actual_result_2 = mapping.implement_output_branch(
+        mock_output_data_2, mock_new_branch_2
+    )
+
+    assert type(actual_result_1) is dict
+    assert type(actual_result_2) is dict
+    assert expected_result_1 == actual_result_1
+    assert expected_result_2 == actual_result_2
 
 
 def test_implement_output_branch_failure():
