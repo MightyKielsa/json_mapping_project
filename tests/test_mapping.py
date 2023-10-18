@@ -25,7 +25,10 @@ def test_get_nested_value_failure():
 def test_build_output_branch_success():
     mock_required_value = 12
     output_path_data = ["something", "here"]
-    result = mapping.build_output_branch(mock_required_value, output_path_data)
+    expected_result = {"something": {"here": 12}}
+    actual_result = mapping.build_output_branch(mock_required_value, output_path_data)
+    assert type(actual_result) is dict
+    assert expected_result == actual_result
 
 
 def test_build_output_branch_failure():
