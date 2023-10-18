@@ -23,7 +23,9 @@ def test_get_nested_value_failure():
 
 
 def test_build_output_branch_success():
-    pass
+    mock_required_value = 12
+    output_path_data = ["something", "here"]
+    result = mapping.build_output_branch(mock_required_value, output_path_data)
 
 
 def test_build_output_branch_failure():

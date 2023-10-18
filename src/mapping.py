@@ -1,6 +1,8 @@
-import src.actions as actions
 import logging
-
+if __name__ == '__main__':
+    import actions
+else:
+    import src.actions as actions
 
 def mapping_fn(input_data, mapping_schema):
     try:
