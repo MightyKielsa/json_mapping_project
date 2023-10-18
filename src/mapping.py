@@ -98,22 +98,27 @@ def build_output_branch(
 # introduces the branch created in build_output_branch into the json without
 # breaking already existing values and nested dict
 def implement_output_branch(output_data, new_branch):
-    new_output_data = output_data
+    try:
+        new_output_data = output_data
 
-    if len(output_data) == 0:
-        new_output_data.update(new_branch)
-        return new_output_data
-
-    for key, value in new_branch.items():
-        if key in new_output_data:
-            new_output_data.update(
-                {key: implement_output_branch(new_output_data[key], value)}
-            )
-            return new_output_data
-        else:
+        if len(output_data) == 0:
             new_output_data.update(new_branch)
-
             return new_output_data
+
+        for key, value in new_branch.items():
+            if key in new_output_data:
+                new_output_data.update(
+                    {key: implement_output_branch(new_output_data[key], value)}
+                )
+                return new_output_data
+            else:
+                new_output_data.update(new_branch)
+
+                return new_output_data
+    except Exception as e:
+        # TODO: add proper log
+        logging.error(e)
+        raise e
 
 
 def process_condition(input_field, input_action, input_data):
