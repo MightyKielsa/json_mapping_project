@@ -117,7 +117,10 @@ def implement_output_branch(output_data, new_branch):
                 return new_output_data
     except Exception as e:
         # TODO: add proper log
-        logging.error(e)
+        logging.error(
+            f"Error while implementing an output branch shaped: {new_branch}. Details: "
+            + str(e)
+        )
         raise e
 
 

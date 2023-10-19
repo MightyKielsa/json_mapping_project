@@ -78,7 +78,15 @@ def test_implement_output_branch_success():
 
 
 def test_implement_output_branch_failure():
-    pass
+    erronous_new_branch = 15
+    erronous_output_data = {
+        "mock_value_1": 1,
+        "branch_node": {"existing_value": "example_str"},
+    }
+    with pytest.raises(Exception):
+        mapping.implement_output_branch(
+            erronous_output_data, erronous_new_branch
+        )
 
 
 def test_process_condition_success():
