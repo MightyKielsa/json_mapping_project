@@ -102,7 +102,9 @@ sample_dict = {
 }
 
 
-def datetime_formatting(input_date, input_format="%d-%m-%y", output_format="%d/%m/%Y"):
+def datetime_formatting(
+    input_date, input_format="%d-%m-%y", output_format="%d/%m/%Y"
+):
     new_date = datetime.datetime.strptime(input_date, input_format).strftime(
         output_format
     )
@@ -115,7 +117,7 @@ def current_datetime(datetime_format="%Y-%m-%d %H:%M:%S"):
 
 
 def is_equal(value1, value2):
-    return value1 == value2
+    return int(value1) == int(value2)
 
 
 def is_larger(value1, value2):
@@ -138,7 +140,6 @@ def text_formatting(action, text, encoding="UTF-8", errors="strict"):
     if action == "lowercase":
         return text.lower()
     if action == "uppercase":
-        print(text.upper())
         return text.upper()
     if action == "capitalize":
         return text.capitalize()
