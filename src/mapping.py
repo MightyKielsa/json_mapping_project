@@ -46,7 +46,7 @@ def mapping_fn(input_data, mapping_schema):
                 required_value, output_path_data
             )
             output_data = implement_output_branch(output_data, output_branch)
-        print(output_data)
+
         return output_data
     except Exception as e:
         logging.error(e)
@@ -181,17 +181,16 @@ def process_condition(input_field, input_action, input_data):
 
 
 def process_text_formatting(input_field, input_action, input_data):
-    print(input_field)
-    print(input_action)
-    print(input_data)
     value_to_format = get_nested_value(
         input_data, input_field["path"].split("/")
     )
     # parameters = input_field["parameters"].split(" ")
-    parameters = dict(
-        parameter.split("=")
-        for parameter in input_field["parameters"].split(" ")
-    )
+    parameters = {}
+    if "parameters" in input_field:
+        parameters = dict(
+            parameter.split("=")
+            for parameter in input_field["parameters"].split(" ")
+        )
     arguments = {
         "action": input_field["format_type"],
         "text": value_to_format,
