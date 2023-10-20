@@ -133,45 +133,51 @@ def implement_output_branch(output_data, new_branch):
 
 
 def process_condition(input_field, input_action, input_data):
-    condition_data = input_field[input_action].split(" ")
-    # These two ifs check if either side of the equation is a reference
-    # to another value in the json and replaces the path with that data
-    if condition_data[0][0] == "#":
-        condition_data[0] = get_nested_value(
-            input_data, condition_data[0].strip("#").split("/")
+    try:
+        condition_data = input_field[input_action].split(" ")
+        # These two ifs check if either side of the equation is a reference
+        # to another value in the json and replaces the path with that data
+        if condition_data[0][0] == "#":
+            condition_data[0] = get_nested_value(
+                input_data, condition_data[0].strip("#").split("/")
+            )
+        if condition_data[2][0] == "#":
+            condition_data[2] = get_nested_value(
+                input_data, condition_data[2].strip("#").split("/")
+            )
+        is_condition_true = actions.actions[condition_data[1]](
+            condition_data[0], condition_data[2]
         )
-    if condition_data[2][0] == "#":
-        condition_data[2] = get_nested_value(
-            input_data, condition_data[2].strip("#").split("/")
+        if is_condition_true:
+            # check if the true value is a path to another value in the json
+            if isinstance(input_field["true"], dict):
+                required_value = perform_nested_action(
+                    input_data, input_field["true"]
+                )
+            elif input_field["true"][0] == "#":
+                required_value = get_nested_value(
+                    input_data, input_field["true"].strip("#").split("/")
+                )
+            else:
+                required_value = input_field["true"]
+        else:
+            # check if the false value is a path to another value in the json
+            if isinstance(input_field["false"], dict):
+                required_value = perform_nested_action(
+                    input_data, input_field["true"]
+                )
+            elif input_field["false"][0] == "#":
+                required_value = get_nested_value(
+                    input_data, input_field["false"].strip("#").split("/")
+                )
+            else:
+                required_value = input_field["false"]
+        return required_value
+    except Exception as e:
+        logging.error(
+            f"Error while processing condition for input field: {input_field}. Details: {e}"
         )
-    is_condition_true = actions.actions[condition_data[1]](
-        condition_data[0], condition_data[2]
-    )
-    if is_condition_true:
-        # check if the true value is a path to another value in the json
-        if isinstance(input_field["true"], dict):
-            required_value = perform_nested_action(
-                input_data, input_field["true"]
-            )
-        elif input_field["true"][0] == "#":
-            required_value = get_nested_value(
-                input_data, input_field["true"].strip("#").split("/")
-            )
-        else:
-            required_value = input_field["true"]
-    else:
-        # check if the false value is a path to another value in the json
-        if isinstance(input_field["false"], dict):
-            required_value = perform_nested_action(
-                input_data, input_field["true"]
-            )
-        elif input_field["false"][0] == "#":
-            required_value = get_nested_value(
-                input_data, input_field["false"].strip("#").split("/")
-            )
-        else:
-            required_value = input_field["false"]
-    return required_value
+        raise e
 
 
 def process_text_formatting(input_field, input_action, input_data):

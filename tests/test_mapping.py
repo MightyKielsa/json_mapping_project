@@ -90,11 +90,55 @@ def test_implement_output_branch_failure():
 
 
 def test_process_condition_success():
-    pass
+    mock_input_field = {
+        "condition": "#namespace:Invoice/namespace:Node1/@Code < 5",
+        "true": "#namespace:Invoice/namespace:Node1/@Title",
+        "false": "#namespace:Invoice/namespace:Node1/@Code",
+    }
+    mock_input_action = "condition"
+    mock_input_data_1 = {
+        "namespace:Invoice": {
+            "namespace:Node1": {"@Code": 2, "@Title": "some_title"}
+        }
+    }
+    mock_input_data_2 = {
+        "namespace:Invoice": {
+            "namespace:Node1": {"@Code": 7, "@Title": "some_title"}
+        }
+    }
+    expected_result_1 = "some_title"
+    expected_result_2 = 7
+    actual_result_1 = mapping.process_condition(
+        mock_input_field, mock_input_action, mock_input_data_1
+    )
+    actual_result_2 = mapping.process_condition(
+        mock_input_field, mock_input_action, mock_input_data_2
+    )
+    assert expected_result_1 == actual_result_1
+    assert expected_result_2 == actual_result_2
 
 
 def test_process_condition_failure():
-    pass
+    erronous_input_field_1 = {
+        "error": "#namespace:Invoice/namespace:Node1/@Code < 5",
+        "true": "#namespace:Invoice/namespace:Node1/@Title",
+        "false": "#namespace:Invoice/namespace:Node1/@Code",
+    }
+    erronous_input_field_2 = {
+        "condition": "namespace:Invoice/namespace:Node1/@Code < 5",
+        "true": "#namespace:Invoice/namespace:Node1/@Title",
+        "false": "#namespace:Invoice/namespace:Node1/@Code",
+    }
+    mock_input_action = "condition"
+    mock_input_data = {}
+    with pytest.raises(Exception):
+        mapping.process_condition(
+            erronous_input_field_1, mock_input_action, mock_input_data
+        )
+    with pytest.raises(Exception):
+        mapping.process_condition(
+            erronous_input_field_2, mock_input_action, mock_input_data
+        )
 
 
 def test_process_text_formatting_success():
