@@ -142,15 +142,66 @@ def test_process_condition_failure():
 
 
 def test_process_text_formatting_success():
-    pass
+    mock_input_field = {
+        "format_type": "encode",
+        "parameters": "encoding=ascii errors=strict",
+        "path": "namespace:Invoice/namespace:Node1/@Title",
+    }
+
+    mock_input_action = "text_formatting"
+    mock_input_data = {
+        "namespace:Invoice": {
+            "namespace:Node1": {
+                "@Code": 7,
+                "@Title": "ExampleTitle",
+            },
+        }
+    }
+    expected_result = b"ExampleTitle"
+    actual_result = mapping.process_text_formatting(
+        mock_input_field, mock_input_action, mock_input_data
+    )
+
+    assert expected_result == actual_result
 
 
 def test_process_text_formatting_failure():
-    pass
+    erronous_input_field = {
+        "format_type": "encode",
+        "parameters": "encoding=ascii errors=strict",
+        "path": "namespace:Invoice/namespace:Node1/@Error",
+    }
+    mock_input_action = "text_formatting"
+    mock_input_data = {
+        "namespace:Invoice": {
+            "namespace:Node1": {
+                "@Code": 7,
+                "@Title": "ExampleTitle",
+            },
+        }
+    }
+    with pytest.raises(Exception):
+        mapping.process_text_formatting(
+            erronous_input_field, mock_input_action, mock_input_data
+        )
 
 
 def test_process_calculation_success():
-    pass
+    mock_input_data = {
+        "namespace:Invoice": {
+            "namespace:Node1": {
+                "@Code": 7,
+                "@Title": "ExampleTitle",
+            },
+        }
+    }
+    mock_calculation_field = "#namespace:Invoice/namespace:Node1/@Code + 15"
+    expected_result = 22
+    actual_result = mapping.process_calculation(
+        mock_input_data, mock_calculation_field
+    )
+
+    assert expected_result == actual_result
 
 
 def test_perform_nested_action_success():

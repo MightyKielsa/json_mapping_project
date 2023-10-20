@@ -181,6 +181,9 @@ def process_condition(input_field, input_action, input_data):
 
 
 def process_text_formatting(input_field, input_action, input_data):
+    print(input_field)
+    print(input_action)
+    print(input_data)
     value_to_format = get_nested_value(
         input_data, input_field["path"].split("/")
     )
@@ -199,7 +202,7 @@ def process_text_formatting(input_field, input_action, input_data):
 
 def process_calculation(input_data, calculation_field):
     if "#" in calculation_field:
-        separated_calculation = calculation_field.split()
+        separated_calculation = calculation_field.split(" ")
         for index, element in enumerate(separated_calculation):
             if "#" in element:
                 separated_calculation[index] = str(
