@@ -99,6 +99,14 @@ def build_output_branch(
 # breaking already existing values and nested dict
 def implement_output_branch(output_data, new_branch):
     try:
+        if type(output_data) is not dict:
+            raise Exception(
+                f"output_data provided is of the wrong type: {type(output_data)}"
+            )
+        if type(new_branch) is not dict:
+            raise Exception(
+                f"new_branch provided is of the wrong type: {type(output_data)}"
+            )
         new_output_data = output_data
 
         if len(output_data) == 0:
