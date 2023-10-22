@@ -246,4 +246,6 @@ def perform_nested_action(input_data, action_field):
     return required_value
 
 
-mapping_fn(actions.sample_dict, actions.sample_schema)
+result = mapping_fn(actions.sample_dict, actions.sample_schema)
+
+print(result)
