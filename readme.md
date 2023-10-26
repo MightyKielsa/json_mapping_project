@@ -20,9 +20,7 @@
 -->
 
 
-<a href="https://github.com/MightyKielsa/json_mapping_project" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=MightyKielsa&message=json_mapping_project&color=green&logo=github" alt="MightyKielsa - json_mapping_project"></a>
-<a href="https://github.com/MightyKielsa/json_mapping_project"><img src="https://img.shields.io/github/stars/MightyKielsa/json_mapping_project?style=social" alt="stars - json_mapping_project"></a>
-<a href="https://github.com/MightyKielsa/json_mapping_project"><img src="https://img.shields.io/github/forks/MightyKielsa/json_mapping_project?style=social" alt="forks - json_mapping_project"></a>
+<img src="https://img.shields.io/badge/MightyKielsa-json_mapping_project-gray?labelColor=green&style=social" alt="MightyKielsa" />
 
 <!-- PROJECT LOGO -->
 <br />
