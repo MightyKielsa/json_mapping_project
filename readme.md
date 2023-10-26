@@ -18,14 +18,10 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
+<a href="https://github.com/MightyKielsa/json_mapping_project/releases/"><img src="https://img.shields.io/github/tag/MightyKielsa/json_mapping_project?include_prereleases=&sort=semver&color=green" alt="GitHub tag"></a>
+<a href="#license"><img src="https://img.shields.io/badge/License-MIT-green" alt="License"></a>
 
 <!-- PROJECT LOGO -->
 <br />
