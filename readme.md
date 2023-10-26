@@ -19,7 +19,8 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-![MightyKielsa](https://img.shields.io/badge/MightyKielsa-json_mapping_project-gray?labelColor=green&style=plastic)
+<a href="https://github.com/MightyKielsa/json_mapping_project"><img src="https://img.shields.io/badge/MightyKielsa-json_mapping_project-gray?labelColor=green&style=plastic&link=https://github.com/MightyKielsa/json_mapping_project" alt="MightyKielsa" /></a>
+<a href="https://github.com/MightyKielsa/json_mapping_project/graphs/contributors"><img src="https://img.shields.io/badge/Contributors-1-gray?labelColor=blue&style=plastic&link=https://github.com/MightyKielsa/json_mapping_project/graphs/contributors" alt="Contributors" /></a>
 
 <!-- PROJECT LOGO -->
 <br />
