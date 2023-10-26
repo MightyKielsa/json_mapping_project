@@ -19,8 +19,7 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-
-<img src="https://img.shields.io/badge/MightyKielsa-json_mapping_project-gray?labelColor=green&style=social" alt="MightyKielsa" />
+![MightyKielsa](https://img.shields.io/badge/MightyKielsa-json_mapping_project-gray?labelColor=green&style=plastic)
 
 <!-- PROJECT LOGO -->
 <br />
