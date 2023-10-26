@@ -25,16 +25,16 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/MightyKielsa/json_mapping_project/blob/main/readme.md">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">JSON Mapping Library</h3>
 
   <p align="center">
     A Json mapping library for your data transformation needs!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/MightyKielsa/json_mapping_project/blob/main/readme.md"><strong>Explore the docs »</strong></a>
     <br />
   </p>
 </div>
