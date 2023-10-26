@@ -21,6 +21,7 @@
 
 <a href="https://github.com/MightyKielsa/json_mapping_project"><img src="https://img.shields.io/badge/MightyKielsa-json_mapping_project-gray?labelColor=green&style=plastic&link=https://github.com/MightyKielsa/json_mapping_project" alt="MightyKielsa" /></a>
 <a href="https://github.com/MightyKielsa/json_mapping_project/graphs/contributors"><img src="https://img.shields.io/badge/Contributors-1-gray?labelColor=blue&style=plastic&link=https://github.com/MightyKielsa/json_mapping_project/graphs/contributors" alt="Contributors" /></a>
+<a href="https://opensource.org/license/mit/"><img src="https://img.shields.io/badge/Licence-MIT-gray?labelColor=orange&style=plastic&link=https://opensource.org/license/mit/" alt="Licence" /></a>
 
 <!-- PROJECT LOGO -->
 <br />
