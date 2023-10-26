@@ -75,7 +75,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+In this project I set out to create a library that would help developers easily transform one json into another. Any project that requires data mapping will benefit from using this project. The high-level overview is as follows: the user provides a schema and a json input, the library transforms the json based on the instructions provided in the schema and it returns the transformed json.
 
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
