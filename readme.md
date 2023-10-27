@@ -77,15 +77,6 @@
 
 In this project I set out to create a library that would help developers easily transform one json into another. Any project that requires data mapping will benefit from using this project. The high-level overview is as follows: the user provides a schema and a json input, the library transforms the json based on the instructions provided in the schema and it returns the transformed json.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
