@@ -80,8 +80,7 @@ TO BE FILLED
 
 ### Installation
 
-TO BE FILLED
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+To be able to work with the repo you will need to:
 
 1. Clone the repo
    ```sh
@@ -91,6 +90,8 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    pip install -r requirements.txt
    ```
+
+And you're good to go!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
