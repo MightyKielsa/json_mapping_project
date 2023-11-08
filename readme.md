@@ -87,6 +87,10 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    git clone https://github.com/MightyKielsa/json_mapping_project.git
    ```
+2. Install the required dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
