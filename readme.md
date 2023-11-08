@@ -51,9 +51,15 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 In this project I set out to create a library that would help developers easily transform one json into another. Any project that requires data mapping will benefit from using this project. The high-level overview is as follows: the user provides a schema and a json input, the library transforms the json based on the instructions provided in the schema and it returns the transformed json.
+
+Example input dictionary:
+![json_project_dict](https://github.com/MightyKielsa/json_mapping_project/assets/104023970/78f21aa1-c361-40df-9034-0990b01c3631)
+
+Example input schema
+![json_project_schema](https://github.com/MightyKielsa/json_mapping_project/assets/104023970/28f956b1-10f4-42f6-804c-fc60075679b4)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
