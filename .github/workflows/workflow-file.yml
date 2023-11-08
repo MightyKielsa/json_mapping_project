@@ -1,4 +1,4 @@
-name: Demo Python Workflow
+name: Main Workflow
 on: [push]
 jobs:
   build:
